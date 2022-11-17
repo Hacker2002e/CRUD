@@ -81,6 +81,7 @@ namespace CRUD
         {
             Strings();
             textBoxClear();
+            Watch();
         }
         private void textBoxClear()
         {

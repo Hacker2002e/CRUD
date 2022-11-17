@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,17 @@ namespace CRUD
 
 
 
-        public static void Add(string ID, string Name, string Surname, string  Salary,  string Email, string Gender)
+        public static void Add( string Name, string Surname,string Email, string Gender, string ID, string  Salary)
         {
             try
             {
 
 
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand("insert into Work (ID,Name,Surname,Salary,Email,Gender) values('" + ID + "','" + Name + "','" + Surname + "','" + Salary + "','" + Email + "','" + Gender + "')", connection);
+                SqlCommand sqlCommand = new SqlCommand("insert into Work (Name,Surname,Email,Gender,ID,Salary) values('" + Name + "','" + Surname + "','" + Email + "','" + Gender + "','" + ID + "','" + Salary + "')", connection);
                 sqlCommand.ExecuteNonQuery();
                 connection.Close();
+                
 
 
 
@@ -66,7 +68,7 @@ namespace CRUD
 
                 connection.Open();
                 int ID_prm = Int32.Parse(ID);
-                SqlCommand sqlCommand = new SqlCommand("Update Work set ID ='" + ID + "', Name = '" + Name + "',Surname='" + Surname + "',Salary='" + Salary + "',Email='" + Email + "',Gender='" + Gender + "'", connection);
+                SqlCommand sqlCommand = new SqlCommand("Update Work set ID ='" + ID + "', Name = '" + Name + "',Surname='" + Surname + "',Salary='" + Salary + "',Email='" + Email + "',Gender='" + Gender + "'where ID="+ID_prm+"", connection);
                 sqlCommand.ExecuteNonQuery();
                 connection.Close();
 
